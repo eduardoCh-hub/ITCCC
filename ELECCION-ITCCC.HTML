@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Elecciones Estudiantiles 2025 - Instituto Técnico Cleofas C. Caballero</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Raleway:wght@300;400;700&display=swap');
+
+        body {
+            background: linear-gradient(135deg, #3B82F6, #FBBF24, #10B981);
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.2) 0%, transparent 70%);
+            animation: pulse 10s infinite;
+            z-index: -1;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1s ease-out;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            background: linear-gradient(45deg, #3B82F6, #FBBF24);
+            color: #000000;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #10B981, #FCD34D);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+            animation: bounce 0.3s;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(0.95); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .input-field {
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            font-family: 'Montserrat', sans-serif;
+            color: #000000;
+        }
+
+        .input-field:focus {
+            border-color: #FBBF24;
+            box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+        }
+
+        .chart-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            transition: transform 0.5s ease;
+        }
+
+        .chart-container:hover {
+            transform: scale(1.02);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            color: #000000;
+        }
+
+        p, label, span {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            color: #000000;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
+	<!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
+	<link rel="stylesheet" type="text/css" href="engine0/style.css" />
+	<script type="text/javascript" src="engine0/jquery.js"></script>
+	<!-- End WOWSlider.com HEAD section --></head>
+<body>
+	<!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
+	<div id="wowslider-container0">
+	<div class="ws_images"><ul>
+		<li><img src="data0/images/mov._cambio_y_esperanza.jpg" alt="mov. Cambio y Esperanza" title="mov. Cambio y Esperanza" id="wows0_0"/></li>
+		<li><a href="http://wowslider.net"><img src="data0/images/estudio.svg.png" alt="slider" title="ESTUDIO.svg" id="wows0_1"/></a></li>
+		<li><img src="data0/images/logo_oficial_del_itccc.png" alt="Logo Oficial del ITCCC" title="Logo Oficial del ITCCC" id="wows0_2"/></li>
+	</ul></div>
+<div class="ws_script" style="position:absolute;left:-99%"><a href="http://wowslider.net">css slideshow</a> by WOWSlider.com v9.0</div>
+	<div class="ws_shadow"></div>
+	</div>	
+	<script type="text/javascript" src="engine0/wowslider.js"></script>
+	<script type="text/javascript" src="engine0/script.js"></script>
+	<!-- End WOWSlider.com BODY section -->
+    <div id="particles-js"></div>
+    <div class="container mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl">Elecciones Estudiantiles 2025</h1>
+            <p class="text-xl">Instituto Técnico Cleofas C. Caballero</p>
+            <p class="text-lg">Licda Ana Patricia Mancía - Coordinadora General de las Elecciones Estudiantiles 2025 </p>
+        </header>
+
+        <div class="card">
+            <h2 class="text-2xl mb-4">Sistema de Votación</h2>
+            <div id="input-section">
+                <label for="identity" class="block text-lg font-medium mb-2">Número de Identidad</label>
+                <input type="text" id="identity" class="input-field w-full mb-4" placeholder="Ej: 1602201300072" maxlength="13">
+                <button onclick="verifyStudent()" class="btn">Verificar</button>
+            </div>
+
+            <div id="student-info" class="hidden mt-6">
+                <h3 class="text-xl font-medium mb-4">Información del Estudiante</h3>
+                <p><strong>Nombre:</strong> <span id="student-name"></span></p>
+                <p><strong>Grado:</strong> <span id="student-grade"></span></p>
+                <p><strong>Sección:</strong> <span id="student-section"></span></p>
+                <h3 class="text-xl font-medium mt-6 mb-4">Selecciona tu Voto</h3ykle                <div class="flex space-x-4">
+                    <button onclick="vote('Morazan')" class="btn">MOVIMIENTO MORAZÁN</button>
+                    <button onclick="vote('Cambio')" class="btn">MOVIMIENTO CAMBIO Y ESPERANZA</button>
+                </div>
+            </div>
+
+            <div id="message" class="mt-4 text-red-400 font-medium"></div>
+        </div>
+
+        <div class="card text-center">
+            <h2 class="text-2xl mb-4">Resultados de las Elecciones</h2>
+            <div class="flex justify-center space-x-4 mb-4">
+                <button id="show-results-btn" onclick="showResults()" class="btn">Mostrar Resultados</button>
+                <button id="hide-results-btn" onclick="hideResults()" class="btn hidden">Ocultar Resultados</button>
+            </div>
+            <div id="results-section" class="hidden">
+                <div class="chart-container">
+                    <canvas id="resultsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Base student data
+        const defaultStudents = [
+            { identity: "1602201300072", name: "ARIANY ELIZABETH TORO CABALLERO", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201300073", name: "ASTRID FABIOLA PAZ RODRIGUEZ", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1624201000032", name: "DANESSY AZUCENA GONZALES ENAMORADO", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201100158", name: "DANIELA MARIA GARCIA GONZALES", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1601201400472", name: "DYLAN STHEFANIA CORTES ARRIAGA", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201200063", name: "ELFY SARAHI CHAVEZ AVELAR", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201300149", name: "GENESIS DANIELA MADRID GOMEZ", grade: "7°", section: "A", hasVoted: false },
+            { identity: "0511201301739", name: "KENCY NICOL MARTINEZ CASTELLANOS", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201200186", name: "KERLIN SARAHI AVELAR CABRERA", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201200209", name: "LOIDA MONSERRATT LEIVA CASTELLANOS", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201200215", name: "MARIA NATIVIDAD HERNANDEZ RODRIGUEZ", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1624201200015", name: "NELSI DAMARI MUÑOZ BARDALES", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201300153", name: "RUT ESTER MORENO HERNANDEZ", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201200200", name: "YOELY ALEXANDRA RODRIGUEZ COREA", grade: "7°", section: "A", hasVoted: false },
+            { identity: "0501201308533", name: "AXEL ABISAI PINEDA REYES", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201300068", name: "CRISTIAN ALEXANDER VEGA AGUILAR", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201100157", name: "DANIEL JOSUE GARCIA GONZALES", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201200010", name: "DAVID EDGARDO MADRID PAREDES", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201100146", name: "EDUAR EDUANI AGUILAR RODRIGUEZ", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602200800214", name: "EDUARDO FRANCISCO PERDOMO AVELAR", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201300148", name: "ELVIN ARMANDO URBINA AGUILAR", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201200179", name: "GIOSER NASRI HERNANDEZ BAUTISTA", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201300001", name: "HESSIER DAVID PINEDA CASTELLANOS", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1601201300023", name: "KEVIN DAVID LEIVA DUBON", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201300045", name: "LESTER MAIROL LEIVA CORDON", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602200900095", name: "LUIS MARIO MEMBREÑO MIRANDA", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201300158", name: "WILMER ALEJANDRO HERNANDEZ PAZ", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201300011", name: "YONY EDGARDO MATUTE MEJIA", grade: "7°", section: "A", hasVoted: false },
+            { identity: "1602201200106", name: "DEBORA JASMIN LOPEZ REYES", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201300195", name: "DEBORA VALENTINA RODRIGUEZ RODRIGUEZ", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1625201300035", name: "KATERIN YAMILETH RODRIGUEZ LEIVA", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201200162", name: "KENIA MELISSA DUBON CARDONA", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201200177", name: "LAURA ANAHI PAZ MADRID", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201200003", name: "MARIA JOSE RODRIGUEZ RAMOS", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201300005", name: "NEIDY TASHANY SORTO GAMEZ", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201200051", name: "NUSLY DANERY SANCHEZ CASTELLANOS", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201100236", name: "SOETH MADAHY LEIVA ACOSTA", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201300034", name: "STEFANY NICOLLE CASTELLANOS MADRID", grade: "7°", section: "B", hasVoted: false },
+            { identity: "0501201205490", name: "STEPHANIE MICHELLE GARCIA BAUTISTA", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201200125", name: "WENDY GUILLEN PAZ", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201200086", name: "YENSI MARISOL HERNANDEZ REYES", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201300154", name: "AARON YARED COREA MADRID", grade: "7°", section: "B", hasVoted: false },
+            { identity: "0413201100201", name: "ALEXANDER ALDUBI PINEDA MANCIA", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201000134", name: "ANDERSON DAVID PERDOMO SORTO", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201200149", name: "CARLOS ALBERTO PAZ LEIVA", grade: "7°", section: "B", hasVoted: false },
+            { identity: "0801201111558", name: "CRISTOFER ENMANUEL BARRIENTOS CARDONA", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201200024", name: "DENSIL ESEQUIEL PORTILLO ULLOA", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201000065", name: "DIDIER JOSUE LEIVA ESPINOSA", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201300163", name: "DOMINIC YOHENYS CARDONA LEIVA", grade: "7°", section: "B", hasVoted: false },
+            { identity: "0501201304617", name: "GABRIEL ALEJANDRO LOPEZ URREA", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201100201", name: "JOSE EMANUEL LEIVA TROCHEZ", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201300121", name: "JOSE MANUEL HERNANDEZ RODRIGUEZ", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201300221", name: "LUIS FERNANDO CANTILLANO CASTELLANOS", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201200069", name: "RONMEL SAID MADRID LOPEZ", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1602201300048", name: "SANTIAGO JOSE RODRIGUEZ", grade: "7°", section: "B", hasVoted: false },
+            { identity: "1603201300440", name: "YONI ROEL RAMOS TEJADA", grade: "7°", section: "B", hasVoted: false },
+            { identity: "0501201201677", name: "ANDREA BRIGITTE FUENTES LEIVA", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201100171", name: "CESIA ABIGAIL RODRIGUEZ ROSALES", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602200800202", name: "DAYANY GISELLE HERNANDEZ TROCHEZ", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201100104", name: "GREDMARIE LIZETH MADRID GARCIA", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201100064", name: "HELLEN BEATRIZ CHAVEZ LEIVA", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201000003", name: "JENSY LOANY AGUILAR PAZ", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1320200900320", name: "KAREN YANETH PEREZ PERDOMO", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201100195", name: "KENDY NOHEMY FIGUEROA ORELLANA", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1624201100003", name: "MAYLIN ESTER ENAMORADO CASTELLANOS", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201100194", name: "PAULA CECILIA RODRIGUEZ MADRID", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201200062", name: "RUTH ABIGAIL LEIVA LEIVA", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201100193", name: "ANGEL DAVID RODRIGUEZ MADRID", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201100242", name: "ANGEL JAVIER HERNANDEZ MADRID", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201200085", name: "CARLOS ALBERTO MADRID RODRIGUEZ", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602200900181", name: "DARWIN TOMAS AVELAR RODRIGUEZ", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201200002", name: "JAFETH ISAI RODRIGUEZ CARDONA", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201100212", name: "JEISON ARIEL DUBON HERNANDEZ", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201100154", name: "JOSE DAVID MADRID HERNANDEZ", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201100127", name: "JUAN CARLOS MADRID CANTILLANO", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201100235", name: "JUAN ROLANDO HERNANDEZ MEMBREÑO", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201000252", name: "KENNER JOSUE REYES LEIVA", grade: "8°", section: "A", hasVoted: false },
+            { identity: "1602201000033", name: "YEISON JOSUE LEIVA SANTIAGO", grade: "8°", section: "A", hasVoted: false },
+            { identity: "0801201125719", name: "ALISON LARIZA GRADIZ PERDOMO", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201000191", name: "CARLA GISSELLE REYES CASTELLANOS", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201200042", name: "GENESIS MARIA MADRID HERNANDEZ", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1601201200150", name: "GREYSI FABIOLA PEDROZA RODRIGUEZ", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201200083", name: "KENDY PAHOLA HERNANDEZ PAZ", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201100199", name: "KENIA YADIRA LEIVA CASTELLANOS", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201000200", name: "LIZZIE DAYANY MADRID MATUTE", grade: "8°", section: "B", hasVoted: false },
+            { identity: "0501201012630", name: "ALVYN DAVID GALO PAZ", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201000212", name: "ANGEL FERNANDO HERNANDEZ CARDONA", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201100238", name: "ANGEL RAMIRO LEIVA RODRIGUEZ", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201200115", name: "DANNY PEREZ CASTELLANOS", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602200700197", name: "HORLIN JAFET HERNANDEZ CARDONA", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201100084", name: "JIMMY JOSUE HERNANDEZ REYES", grade: "8°", section: "B", hasVoted: false },
+            { identity: "0501201204385", name: "JOSUE DAVID GAMEZ ENAMORADO", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201200074", name: "LENIS EDUARDO RODRIGUEZ RODRIGUEZ", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201100167", name: "MARLON ALEXIS RODRIGUEZ LEIVA", grade: "8°", section: "B", hasVoted: false },
+            { identity: "0502201104197", name: "NEIMAR SNAIDER ZELAYA HERNANDEZ", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201000092", name: "WILLIAM JADED MADRID PEÑA", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201100107", name: "WILLIAN JAFETH ARRIAGA LEIVA", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201100159", name: "YEISON VICTORIANO REYES PERDOMO", grade: "8°", section: "B", hasVoted: false },
+            { identity: "1602201200067", name: "YOSER EMMANUEL PAZ MORENO", grade: "8°", section: "B", hasVoted: false },
+            { identity: "0501201111192", name: "ALISSON VALERIA MEJIA CABALLERO", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201100090", name: "ALLISSON LICETH MARTINEZ ARRIAGA", grade: "9°", section: "A", hasVoted: false },
+            { identity: "0501201104343", name: "ANGIE IVETH MEJIA REYES", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201100033", name: "DAFNE ALEJANDRA RODRIGUEZ CRUZ", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201100132", name: "DARIANA NOHELIA MADRID CANTILLANO", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201100056", name: "DENESSY JIRETH TORO HERNANDEZ", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201100116", name: "EUNICE NICOLLE ARRIAGA HERNANDEZ", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201100117", name: "LISBETH MARIETH RODRIGUEZ ULLOA", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201100151", name: "MARIA FERNANDA AVELAR ENAMORADO", grade: "9°", section: "A", hasVoted: false },
+            { identity: "0801201020365", name: "MARYURI LIZETH ROMERO CHAVEZ", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201000188", name: "RAQUEL ABIGAIL AMAYA PEREZ", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201100087", name: "STEFANY LOAMI LEIVA AGUILERA", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201000244", name: "YOSELYN SARAHI RODRIGUEZ MATUTE", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602200700110", name: "ANGEL ARIEL REYES MADRID", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201100097", name: "AXEL GUDIEL RODRIGUEZ AGUILERA", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201000228", name: "HORALDO JAVIER DIAZ PINEDA", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201100227", name: "JOSE IVAN PAREDES CASTELLANOS", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201000128", name: "JUAN CARLOS CHAVEZ GAMEZ", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602200900193", name: "JUAN DAVID MADRID REYES", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201100067", name: "LEONIDAS YADIEL RIVERA RODRIGUEZ", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201000199", name: "LESTHER EDGARDO LEIVA PINEDA", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201100109", name: "MARIO ORLANDO HERNANDEZ RODRIGUEZ", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602200900080", name: "MARIO RAMON LEIVA RODRIGUEZ", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201100014", name: "NELSON ISAAC ALVARENGA ULLOA", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602200900107", name: "OLVIN JOSUE MEJIA ZAVALA", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201000067", name: "WELDRES NAHUN RODRIGUEZ MADRID", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602200900021", name: "YOSTIN URIEL GARCIA HERNANDEZ", grade: "9°", section: "A", hasVoted: false },
+            { identity: "1602201100092", name: "ALLISSON NICOLLE REYES MADRID", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201100156", name: "ANDREA LIZETH CARDONA MADRID", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201100153", name: "ANGELICA YULEISI JUAREZ LEIVA", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1620201100034", name: "DARIELA SARAI RODRIGUEZ REYES", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602200800080", name: "DIANA YANELY CABALLERO IZAGUIRRE", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201100066", name: "DULCE MARIA REYES CARDONA", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201100137", name: "GENESIS PAOLA HERNANDEZ FLORES", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201000192", name: "JENSY SARAHI RODRIGUEZ REYES", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602200800138", name: "KATHERINE GISSELLE RODRIGUEZ REYES", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201100057", name: "KEILYN IVETH LEIVA CHAVEZ", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201100082", name: "LEIBY NAIROBY CASTELLANOS MARTINEZ", grade: "9°", section: "B", hasVoted: false },
+            { identity: "0511201100452", name: "MAIRA GISELLE GUITIERREZ MEJIA", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201100041", name: "MARELIN JULIETH MURILLO PAREDES", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1622200900079", name: "MERY SAMIRA PINEDA CABALLERO", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602200800103", name: "RICCY LARISA NUÑEZ GONZALES", grade: "9°", section: "B", hasVoted: false },
+            { identity: "0501200801097", name: "TIFANY ISABEL GALO PAZ", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1610201000008", name: "ALLAN JAFET LOPEZ LARIOS", grade: "9°", section: "B", hasVoted: false },
+            { identity: "0501201105260", name: "BRANDON JOSEPH HERNANDEZ VENTURA", grade: "9°", section: "B", hasVoted: false },
+            { identity: "0512200800130", name: "CARLOS DAVID ZAVALA VILLANUEVA", grade: "9°", section: "B", hasVoted: false },
+            { identity: "0511200900244", name: "CRISTHIAN ESMELIN CASTELLANOS MARTINEZ", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1610201000009", name: "CRISTIAN DAVID LOPEZ LARIOS", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201000111", name: "DANY JOSUE MEJIA CANALES", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201100071", name: "DAVID EMANUEL HERNANDEZ", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201000202", name: "GERSON ISAAC REYES BAIDE", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201100107", name: "JARED ALEXIS ALEGRIA DUBON", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201000050", name: "JERAL FELIPE PINEDA CARDONA", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602200800183", name: "MARLON SAMIR LOPEZ RAMOS", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602200900006", name: "OSCAR DAVID BENITEZ RODRIGUEZ", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201100083", name: "SAMUEL ISAI LOPEZ REYES", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1610201000224", name: "WALTER JAFETH MEJIA DUBON", grade: "9°", section: "B", hasVoted: false },
+            { identity: "1602201000079", name: "ALEJANDRA MARIA MADRID DIAZ", grade: "10°", section: "A", hasVoted: false },
+            { identity: "1602200800124", name: "ANDRY ALEXA AGUILAR CHAVEZ", grade: "10°", section: "A", hasVoted: false },
+            { identity: "1602201000112", name: "ANY MARIELA RODRIGUEZ LEIVA", grade: "10°", section: "A", hasVoted: false },
+            { identity: "1602201000125", name: "ASHLY IRAZEMA MEJIA HERNANDEZ", grade: "10°", section: "A", hasVoted: false },
+            { identity: "1602201400227", name: "ASTRID CAROLINA FLORES PAZ", grade: "10°", section: "A", hasVoted: false },
+            { identity: "1602200900178", name: "BRISNEY GRISSELLE VEGA CLAROS", grade: "10°", section: "A", hasVoted: false },
+            { identity: "1602200800222", name: "BRITNI LARISSA FIGUEROA RODRIGUEZ", grade: "10°", section: "A", hasVoted: false },
+            { identity: "1602201000081", name: "EMILCE LARISSA RODRIGUEZ CARDONA", grade: "10°", section: "A", hasVoted: false },
+            { identity: "1602201000070", name: "EMILY NICOLLE RODRIGUEZ AGUILAR", grade: "10°", section: "A", hasVoted: false },
+            { identity: "0502200901835", name: "MADELY SARAHY RODRIGUEZ MUÑOZ", grade: "10°", section: "A", hasVoted: false },
+            { identity: "1602200900076", name: "NEYDA FABIOLA HERNANDEZ MEMBNREÑO", grade: "10°", section: "A", hasVoted: false },
+            { identity: "1602200900185", name: "SULMY XIOMARA HERNANDEZ DUBON", grade: "10°", section: "A", hasVoted: false },
+            { identity: "1602200900014", name: "EDGAR DARIO CARDONA HERNANDEZ", grade: "10°", section: "A", hasVoted: false },
+            { identity: "1602201000131", name: "JONATAN JOSUE REYES HERNANDEZ", grade: "10°", section: "A", hasVoted: false },
+            { identity: "0501200907982", name: "JOSEPH ADALI CLAROS TROCHEZ", grade: "10°", section: "A", hasVoted: false },
+            { identity: "1601200900052", name: "LUIS FERNANDO PINEDA TERUEL", grade: "10°", section: "A", hasVoted: false },
+            { identity: "1602201000148", name: "ANGIE NAHOMY INESTROZA RODRIGUEZ", grade: "10°", section: "B", hasVoted: false },
+            { identity: "1602201000197", name: "DANNA JAZLYNE LOPEZ PINEDA", grade: "10°", section: "B", hasVoted: false },
+            { identity: "1602200900077", name: "EMELY DANELY MADRID CANTILLANOS", grade: "10°", section: "B", hasVoted: false },
+            { identity: "1602200900154", name: "GENESIS DAYANA MADRID ZAVALA", grade: "10°", section: "B", hasVoted: false },
+            { identity: "1602201000209", name: "KEREN TATIANA LEIVA HERNANDEZ", grade: "10°", section: "B", hasVoted: false },
+            { identity: "1610200900158", name: "KIMBERLY DAYANA LOPEZ CALDERON", grade: "10°", section: "B", hasVoted: false },
+            { identity: "1602200800178", name: "SCARLETH VANESSA RODRIGUEZ CHAVEZ", grade: "10°", section: "B", hasVoted: false },
+            { identity: "1602201000207", name: "SERENA BELEN RIVERA MUÑOZ", grade: "10°", section: "B", hasVoted: false },
+            { identity: "0501200914278", name: "ANGEL EDGARDO FUENTES CALDERON", grade: "10°", section: "B", hasVoted: false },
+            { identity: "1602201000073", name: "ERICK YOVANY LEIVA ROMERO", grade: "10°", section: "B", hasVoted: false },
+            { identity: "1602200700075", name: "MELVIN RAMON RODRIGUEZ CHAVEZ", grade: "10°", section: "B", hasVoted: false },
+            { identity: "0502200904325", name: "SAUL DAVID HERNANDEZ HERNANDEZ", grade: "10°", section: "B", hasVoted: false },
+            { identity: "1625201000021", name: "STIVEN JARETH DUBON TROCHEZ", grade: "10°", section: "B", hasVoted: false },
+            { identity: "1602201000059", name: "DAYANA NOHEMY RODAS MADRID", grade: "10°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200900162", name: "DELMI MARLEN FUNES VEGA", grade: "10°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200800134", name: "IRMA LIZETH RODRIGUEZ CANTILLANO", grade: "10°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200800193", name: "KRISIAN YELIN VEGA ORELLANA", grade: "10°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200900127", name: "NAHOMY GISELLE TROCHEZ AGUILERA", grade: "10°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1610200900211", name: "NATALY IVETH MEJIA CABALLERO", grade: "10°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200900176", name: "ODRY LAYEVSKA SARMIENTO ZELAYA", grade: "10°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200600084", name: "ANGEL DAVID LEIVA GOMEZ", grade: "10°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1610200900200", name: "ANTONY JAFEC DUBON FUNES", grade: "10°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1610201000012", name: "CARLOS EDUARDO RODRIGUEZ MEMBREÑO", grade: "10°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200500227", name: "CRISTIAN JOSUE RODRIGUEZ REYES", grade: "10°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602201000040", name: "EDUAR ISAI REYES MADRID", grade: "10°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602201000120", name: "EDWIN JOSIAS CABALLERO RODRIGUEZ", grade: "10°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200900022", name: "EMANUEL ISAAC RODRIGUEZ LEIVA", grade: "10°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200800216", name: "DANIA ELIZABETH RODRIGUEZ RODRIGUEZ", grade: "11°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "1610200800150", name: "KAREN YORLENI RODRIGUEZ HERNANDEZ", grade: "11°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "0403200600031", name: "LIZZY YANETH GARCIA CARTAGENA", grade: "11°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "1602200800013", name: "NATALIE AZUCENA MEJIA HERNANDEZ", grade: "11°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "0501200908937", name: "ANDERSON LEIVA MADRID", grade: "11°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "0511200601936", name: "AXEL ANTONIO HERNANDEZ VENTURA", grade: "11°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "1602200900071", name: "BAIRON DAVID CABALLERO FIGUEROA", grade: "11°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "1602200800142", name: "EDWIN JOEL MADRID RODRIGUEZ", grade: "11°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "0801200911951", name: "JOSE ISAAC SALGADO PAGOADA", grade: "11°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "1602200500045", name: "KELVIN ARIEL RODRIGUEZ RODRIGUEZ", grade: "11°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "1602200800052", name: "HEIDY MARIELA LEIVA HERNANDEZ", grade: "11°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200800218", name: "HERMIONE NICOLLE BADOS GOMEZ", grade: "11°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200400102", name: "KENSY MARIELA RODRIGUEZ REYES", grade: "11°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200900068", name: "SUANY RAQUEL REYES HERNANDEZ", grade: "11°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200900110", name: "WENDY JESENIA RODRIGUEZ CABALLERO", grade: "11°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200800205", name: "MARTIN JOSE RODRIGUEZ CLAROS", grade: "11°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1610200800132", name: "MIGUEL ANGEL RAMOS HERNANDEZ", grade: "11°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "0801200911952", name: "SAMUEL EDUARDO SALGADO PAGOADA", grade: "11°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200700143", name: "ANGIE NICOLLE GAMEZ ENAMORADO", grade: "12°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "1602200700212", name: "JULISSA NICOLLE MADRID BENITES", grade: "12°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "1602200800086", name: "LESLI SARAHI CANTILLANO LEIVA", grade: "12°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "1602200600031", name: "NIDIA GISSELLE MADRID ALVARADO", grade: "12°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "1602200700168", name: "CRISTIAN FABRICIO REYES LEIVA", grade: "12°", section: "INFORMÁTICA", hasVoted: false },
+            { identity: "0511200501726", name: "KENSY MARIELA GARCIA GONZALES", grade: "12°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200700078", name: "CARLOS DANIEL QUINTANILLA SORTO", grade: "12°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200700223", name: "ELMY JOEL RODRIGUEZ RODRIGUEZ", grade: "12°", section: "ROBÓTICA", hasVoted: false },
+            { identity: "1602200800022", name: "NERY MOISES MORENO HERNANDEZ", grade: "12°", section: "ROBÓTICA", hasVoted: false }
+        ];
+
+        // Database version for reset control
+        const currentDatabaseVersion = "2.0";
+        const storedDatabaseVersion = localStorage.getItem('databaseVersion');
+
+        // Reset localStorage if the database version has changed
+        if (storedDatabaseVersion !== currentDatabaseVersion) {
+            localStorage.setItem('students', JSON.stringify(defaultStudents));
+            localStorage.setItem('votes', JSON.stringify({ Morazan: 0, Cambio: 0 }));
+            localStorage.setItem('databaseVersion', currentDatabaseVersion);
+        }
+
+        // Load data from localStorage
+        let students = JSON.parse(localStorage.getItem('students')) || defaultStudents;
+        let votes = JSON.parse(localStorage.getItem('votes')) || { Morazan: 0, Cambio: 0 };
+
+        // Save data to localStorage
+        function saveData() {
+            localStorage.setItem('students', JSON.stringify(students));
+            localStorage.setItem('votes', JSON.stringify(votes));
+        }
+
+        // Initialize Chart.js
+        const ctx = document.getElementById('resultsChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['MOVIMIENTO MORAZÁN', 'MOVIMIENTO CAMBIO Y ESPERANZA'],
+                datasets: [{
+                    data: [votes.Morazan, votes.Cambio],
+                    backgroundColor: ['#3B82F6', '#FBBF24'],
+                    borderColor: ['#fff', '#fff'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top', labels: { font: { family: 'Montserrat', size: 14 }, color: '#000000' } },
+                    title: { display: true, text: 'Resultados de las Elecciones', font: { family: 'Raleway', size: 20 }, color: '#000000' }
+                },
+                animation: {
+                    duration: 1000,
+                    easing: 'easeInOutQuart'
+                }
+            }
+        });
+
+        function verifyStudent() {
+            const identity = document.getElementById('identity').value.trim();
+            const message = document.getElementById('message');
+            const studentInfo = document.getElementById('student-info');
+            const inputSection = document.getElementById('input-section');
+
+            if (!/^\d{13}$/.test(identity)) {
+                message.textContent = "Por favor, ingrese un número de identidad válido (13 dígitos).";
+                return;
+            }
+
+            const student = students.find(s => s.identity === identity);
+            if (!student) {
+                message.textContent = "Estudiante no encontrado.";
+                return;
+            }
+
+            if (student.hasVoted) {
+                message.textContent = "Este estudiante ya ha votado.";
+                return;
+            }
+
+            message.textContent = "";
+            document.getElementById('student-name').textContent = student.name;
+            document.getElementById('student-grade').textContent = student.grade;
+            document.getElementById('student-section').textContent = student.section;
+            studentInfo.classList.remove('hidden');
+            inputSection.classList.add('hidden');
+        }
+
+        function vote(movement) {
+            const identity = document.getElementById('identity').value.trim();
+            const student = students.find(s => s.identity === identity);
+            const message = document.getElementById('message');
+            const studentInfo = document.getElementById('student-info');
+            const inputSection = document.getElementById('input-section');
+
+            if (student.hasVoted) {
+                message.textContent = "Este estudiante ya ha votado.";
+                return;
+            }
+
+            student.hasVoted = true;
+            votes[movement]++;
+            chart.data.datasets[0].data = [votes.Morazan, votes.Cambio];
+            chart.update();
+
+            // Save updated data to localStorage
+            saveData();
+
+            message.textContent = "¡Voto registrado con éxito!";
+            studentInfo.classList.add('hidden');
+            inputSection.classList.remove('hidden');
+            document.getElementById('identity').value = "";
+        }
+
+        // Functions to show/hide results
+        function showResults() {
+            document.getElementById('results-section').classList.remove('hidden');
+            document.getElementById('show-results-btn').classList.add('hidden');
+            document.getElementById('hide-results-btn').classList.remove('hidden');
+        }
+
+        function hideResults() {
+            document.getElementById('results-section').classList.add('hidden');
+            document.getElementById('show-results-btn').classList.remove('hidden');
+            document.getElementById('hide-results-btn').classList.add('hidden');
+        }
+
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#ffffff' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+</html>
